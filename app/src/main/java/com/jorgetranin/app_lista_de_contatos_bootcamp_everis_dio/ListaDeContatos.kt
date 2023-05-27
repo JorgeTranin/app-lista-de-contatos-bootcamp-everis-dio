@@ -24,6 +24,11 @@ class ListaDeContatos : AppCompatActivity() {
         if (index == -1){
           binding.btnExcluirContato.visibility = View.GONE
             return
+        }else{
+            binding.btnExcluirContato.setOnClickListener {
+                onClickExcluirContato()
+            }
+            binding.btnExcluirContato.visibility = View.VISIBLE
         }
        binding.etNome.setText(ContatoSingleton.lista[index].nome)
        binding.etTelefone.setText(ContatoSingleton.lista[index].telefone)
@@ -45,7 +50,7 @@ class ListaDeContatos : AppCompatActivity() {
         finish()
     }
 
-    fun onClickExcluirContato(view: View) {
+    fun onClickExcluirContato() {
         if(index > -1){
             ContatoSingleton.lista.removeAt(index)
             finish()
