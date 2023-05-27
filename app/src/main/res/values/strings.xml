@@ -47,4 +47,6 @@
     <string name="telefone_do_contato">Telefone do Contato</string>
     <string name="salvar_contato">Salvar contato</string>
     <string name="excluir_contato">Excluir contato</string>
+    <string name="content_description_search">searsh</string>
+    <string name="search">search</string>
 </resources>

@@ -1,18 +1,21 @@
 package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.widget.Toolbar
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.bases.BaseActivity
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.ActivityListaDeContatosBinding
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.singleton.ContatoSingleton
 
-class ListaDeContatos : AppCompatActivity() {
+class ListaDeContatos : BaseActivity() {
     private lateinit var binding: ActivityListaDeContatosBinding
     private var index: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListaDeContatosBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+        setupToolBar(toolBar = Toolbar(this), "Contato", true)
 
         setupContato()
        binding.btnSalvarConato.setOnClickListener {

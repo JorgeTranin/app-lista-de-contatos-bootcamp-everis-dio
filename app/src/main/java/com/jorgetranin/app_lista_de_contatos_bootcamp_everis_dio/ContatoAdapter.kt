@@ -8,7 +8,7 @@ import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.Ite
 
 class ContatoAdapter(
     private val context: Context,
-    private val lista: MutableList<ContatosVO>,
+    private var lista: MutableList<ContatosVO>,
     private val onClick: ((Int) -> Unit)
 ) : RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContatoViewHolder {
@@ -30,5 +30,15 @@ class ContatoAdapter(
     class ContatoViewHolder(val binding: ItemContatoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         // Acesso aos elementos do XML usando a propriedade 'binding'
+    }
+    fun filter(query: String) {
+        lista = if (query.isNotEmpty()) ({
+            lista.filter { contato ->
+                contato.nome.contains(query, ignoreCase = true)
+            }
+        }) as MutableList<ContatosVO> else {
+            lista
+        }
+        notifyDataSetChanged()
     }
 }
