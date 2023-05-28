@@ -49,4 +49,11 @@
     <string name="excluir_contato">Excluir contato</string>
     <string name="content_description_search">searsh</string>
     <string name="search">search</string>
+    <string name="nome_contato">Nome contato:</string>
+    <string name="telefone_contato">Telefone contato:</string>
+    <string name="buttom_para_add_novo_contato">Buttom para add novo contato</string>
+    <string name="campo_para_pesquisa_de_nomes">campo para pesquisa de nomes</string>
+    <string name="buscar">Buscar:</string>
+    <string name="nome">Nome</string>
+    <string name="botao_para_pesquisa_de_nome">Botao para pesquisa de nome</string>
 </resources>

@@ -6,35 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <LinearLayout
         android:id="@+id/topAppBar1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#676767"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/top_app_bar"
-            app:title="Lista de Contatos"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buscar"
+            android:textColor="#FFFFFF" />
 
-            />
+        <EditText
+            android:id="@+id/etBuscar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:autofillHints="name"
+            android:hint="@string/nome"
+            android:inputType="textPersonName"
+            android:textColor="#918A8A"
+            android:textSize="20sp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <ImageView
+            android:id="@+id/ivBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:background="#676767"
+            android:focusable="true"
+            android:contentDescription="@string/botao_para_pesquisa_de_nome"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_menu_search" />
+    </LinearLayout>
 
-    <!-- Note: A RecyclerView can also be used -->
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <!-- Scrollable content -->
-
-    </androidx.core.widget.NestedScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -54,6 +68,7 @@
         android:layout_margin="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/buttom_para_add_novo_contato"
         android:src="@android:drawable/ic_input_add"
         android:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

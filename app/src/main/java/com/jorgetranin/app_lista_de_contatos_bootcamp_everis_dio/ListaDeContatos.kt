@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.application.ContatoApplication
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.bases.BaseActivity
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.ActivityListaDeContatosBinding
-import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.singleton.ContatoSingleton
 
 class ListaDeContatos : BaseActivity() {
     private lateinit var binding: ActivityListaDeContatosBinding
-    private var index: Int = -1
+    private var idContato: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListaDeContatosBinding.inflate(LayoutInflater.from(this))
@@ -19,44 +19,57 @@ class ListaDeContatos : BaseActivity() {
 
         setupContato()
        binding.btnSalvarConato.setOnClickListener {
+
            onClickSalvarContato()
        }
     }
     private fun setupContato(){
-        index = intent.getIntExtra("index",-1)
-        if (index == -1){
-          binding.btnExcluirContato.visibility = View.GONE
+        idContato = intent.getIntExtra("index",-1)
+        if (idContato == -1){
             return
-        }else{
-            binding.btnExcluirContato.setOnClickListener {
-                onClickExcluirContato()
-            }
-            binding.btnExcluirContato.visibility = View.VISIBLE
         }
-       binding.etNome.setText(ContatoSingleton.lista[index].nome)
-       binding.etTelefone.setText(ContatoSingleton.lista[index].telefone)
+        binding.btnExcluirContato.visibility = View.VISIBLE
+        Thread(Runnable {
+            Thread.sleep(1500)
+            var lista = ContatoApplication.instance.helperDB?.buscarContatos("$idContato",true) ?: return@Runnable
+            var contato = lista.getOrNull(0) ?: return@Runnable
+            runOnUiThread {
+                binding.etNome.setText(contato.nome)
+                binding.etTelefone.setText(contato.telefone)
+            }
+        }).start()
     }
 
     private fun onClickSalvarContato(){
         val nome = binding.etNome.text.toString()
         val telefone = binding.etTelefone.text.toString()
         val contato = ContatosVO(
-            0,
+            idContato,
             nome,
             telefone
         )
-        if(index == -1) {
-            ContatoSingleton.lista.add(contato)
-        }else{
-            ContatoSingleton.lista.set(index,contato)
-        }
-        finish()
+        Thread(Runnable {
+            Thread.sleep(1500)
+            if(idContato == -1) {
+                ContatoApplication.instance.helperDB?.salvarContato(contato)
+            }else{
+                ContatoApplication.instance.helperDB?.updateContato(contato)
+            }
+            runOnUiThread {
+                finish()
+            }
+        }).start()
     }
 
-    fun onClickExcluirContato() {
-        if(index > -1){
-            ContatoSingleton.lista.removeAt(index)
-            finish()
+    fun onClickExcluirContato(view: View) {
+        if(idContato > -1){
+            Thread(Runnable {
+                Thread.sleep(1500)
+                ContatoApplication.instance.helperDB?.deletarCoontato(idContato)
+                runOnUiThread {
+                    finish()
+                }
+            }).start()
         }
     }
 }
