@@ -3,6 +3,7 @@ package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.application.ContatoApplication
@@ -50,6 +51,7 @@ class MainActivity : BaseActivity() {
 
     private fun onClickBuscar(){
         val busca = binding.etBuscar.text.toString()
+        binding.pbLoad.visibility = View.VISIBLE
         Thread(Runnable {
             Thread.sleep(1500)
             var listaFiltrada: List<ContatosVO> = mutableListOf()
@@ -62,6 +64,7 @@ class MainActivity : BaseActivity() {
                 adapter = ContatoAdapter(this,listaFiltrada) {onClickItemRecyclerView(it)}
                 binding.recyclerView.adapter = adapter
                 Toast.makeText(this,"Buscando por $busca",Toast.LENGTH_SHORT).show()
+                binding.pbLoad.visibility = View.GONE
             }
         }).start()
     }

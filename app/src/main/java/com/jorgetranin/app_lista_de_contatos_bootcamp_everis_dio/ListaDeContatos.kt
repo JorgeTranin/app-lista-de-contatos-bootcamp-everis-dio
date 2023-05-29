@@ -28,14 +28,18 @@ class ListaDeContatos : BaseActivity() {
         if (idContato == -1){
             return
         }
-        binding.btnExcluirContato.visibility = View.VISIBLE
+
         Thread(Runnable {
+
             Thread.sleep(1500)
-            var lista = ContatoApplication.instance.helperDB?.buscarContatos("$idContato",true) ?: return@Runnable
-            var contato = lista.getOrNull(0) ?: return@Runnable
+            //binding.pbLoadAddContato.visibility = View.VISIBLE
+            val lista = ContatoApplication.instance.helperDB?.buscarContatos("$idContato",true) ?: return@Runnable
+            val contato = lista.getOrNull(0) ?: return@Runnable
             runOnUiThread {
                 binding.etNome.setText(contato.nome)
                 binding.etTelefone.setText(contato.telefone)
+                binding.pbLoadAddContato.visibility = View.GONE
+                binding.btnExcluirContato.visibility = View.VISIBLE
             }
         }).start()
     }
@@ -61,7 +65,7 @@ class ListaDeContatos : BaseActivity() {
         }).start()
     }
 
-    fun onClickExcluirContato(view: View) {
+    fun onClickExcluirContato() {
         if(idContato > -1){
             Thread(Runnable {
                 Thread.sleep(1500)
