@@ -1,4 +1,4 @@
-package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio
+package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,15 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.application.ContatoApplication
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.bases.BaseActivity
-import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.ActivityListaDeContatosBinding
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.ActivityAddNewContatosBinding
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.model.ContatosVO
 
-class ListaDeContatos : BaseActivity() {
-    private lateinit var binding: ActivityListaDeContatosBinding
+class AddNewContato : BaseActivity() {
+    private lateinit var binding: ActivityAddNewContatosBinding
     private var idContato: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityListaDeContatosBinding.inflate(LayoutInflater.from(this))
+        binding = ActivityAddNewContatosBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         setupToolBar(toolBar = Toolbar(this), "Contato", true)
 

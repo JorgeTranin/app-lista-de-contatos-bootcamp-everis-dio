@@ -1,10 +1,11 @@
-package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio
+package com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.databinding.ItemContatoBinding
+import com.jorgetranin.app_lista_de_contatos_bootcamp_everis_dio.model.ContatosVO
 
 class ContatoAdapter(
     private val context: Context,
